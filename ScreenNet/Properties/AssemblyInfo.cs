@@ -1,0 +1,9 @@
+﻿using System.Reflection;
+using System.Runtime.InteropServices;
+[assembly: AssemblyTitle("ScreenNet")]
+[assembly: AssemblyProduct("ScreenNet")]
+[assembly: AssemblyCopyright("")]
+[assembly: ComVisible(false)]
+[assembly: Guid("7445A8B1-CDA1-4067-AC63-F140BF234B20")]
+[assembly: AssemblyVersion("1.0.0.0")]
+[assembly: AssemblyFileVersion("1.0.0.0")]
