@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.ComponentModel;
 
 namespace ScreenNet
 {
@@ -26,7 +27,11 @@ namespace ScreenNet
         protected override void OnKeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
-                Close();//OnLostFocus(EventArgs.Empty);
+                Close();
+        }
+        protected override void OnDeactivate(EventArgs e)
+        {
+            Close();
         }
 
         #region Selection

@@ -57,7 +57,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AppContext.cs" />
+    <Compile Include="AppContext.cs" />
     <Compile Include="CreatingForm.cs">
       <SubType>Form</SubType>
     </Compile>
