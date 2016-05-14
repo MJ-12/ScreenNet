@@ -24,17 +24,18 @@ namespace ScreenNet
             AppContext.FinishCreating(screenshot);
             Dispose();
         }
+        protected override void OnDeactivate(EventArgs e)
+        {
+            if (AppContext.IsCreating)
+                Close();
+        }
         protected override void OnKeyUp(KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
                 Close();
         }
-        protected override void OnDeactivate(EventArgs e)
-        {
-            Close();
-        }
 
-        #region Selection
+        #region Selection with mouse
         protected override void OnMouseDown(MouseEventArgs e)
         {
             if (e.Button != MouseButtons.Left)
@@ -60,15 +61,12 @@ namespace ScreenNet
             end = e.Location;
             selected = Rectangle.Empty;
             Invalidate();
-            if (Math.Abs(begin.X - end.X) < 20 && Math.Abs(begin.Y - end.Y) < 20)
+            if ((Math.Abs(begin.X - end.X) < 20 && Math.Abs(begin.Y - end.Y) < 20) || Math.Abs(begin.X - end.X) == 0 || Math.Abs(begin.Y - end.Y) == 0)
                 return;
 
             screenshot = new Bitmap(Math.Abs(end.X - begin.X), Math.Abs(end.Y - begin.Y));
             using (Graphics gr = Graphics.FromImage(screenshot))
-            {
-                Rectangle r = new Rectangle(Math.Min(begin.X, end.X), Math.Min(begin.Y, end.Y), Math.Abs(end.X - begin.X), Math.Abs(end.Y - begin.Y));
-                gr.DrawImage(BackgroundImage, -r.X, -r.Y);
-            }
+                gr.DrawImage(BackgroundImage, -Math.Min(begin.X, end.X), -Math.Min(begin.Y, end.Y));
             Close();
         }
         #endregion
